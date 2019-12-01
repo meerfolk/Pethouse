@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports: 
+      - 8000:80
+    volumes:
+      - ./static:/etc/nginx/html/static
+      - ./config/ngnix.development.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - server
+
+  server:
+    build: ./server
+    volumes:
+      - ./server:/src
+    environment:
+      - FLASK_APP=./main.py
+    command: pipenv run flask run --host 0.0.0.0
