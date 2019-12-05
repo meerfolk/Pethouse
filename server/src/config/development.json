@@ -1,0 +1,12 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 5000,
+    "protocol": "http"
+  },
+
+  "github_app": {
+    "client_id": "example_client_id",
+    "client_secret": "example_client_secret"
+  }
+}
