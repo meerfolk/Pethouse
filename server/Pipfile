@@ -6,9 +6,11 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 pytest-flask = "*"
+requests-mock = "*"
 
 [packages]
 flask = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
