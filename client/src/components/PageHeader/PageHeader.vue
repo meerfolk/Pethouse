@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import LoginButton from './components/LoginButton.vue';
+  import LoginButton from './components/LoginButton';
 
   export default {
     components: {

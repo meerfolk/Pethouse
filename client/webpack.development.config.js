@@ -6,6 +6,9 @@ module.exports = {
   output: {
     filename: '../../static/bundle.js',
   },
+  resolve: {
+    extensions: ['.js', '.vue'],
+  },
   module: {
     rules: [
       {
