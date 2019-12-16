@@ -2,6 +2,7 @@ version: '3'
 
 services:
   nginx:
+    container_name: pethouse_nginx
     image: nginx:latest
     ports: 
       - 8000:80
@@ -12,9 +13,19 @@ services:
       - server
 
   server:
-    build: ./server
+    container_name: pethouse_server
+    build: ../../server
     volumes:
       - ./server:/src
     environment:
       - FLASK_APP=./main.py
     command: pipenv run flask run --host 0.0.0.0
+
+  postgres:
+    container_name: pethouse_postgres
+    image: postgres:latest
+    ports:
+      - 54321:5432
+    env_file:
+      - ./postgres.env
+
