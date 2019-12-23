@@ -16,9 +16,11 @@ services:
     container_name: pethouse_server
     build: ../../server
     volumes:
-      - ./server:/src
+      - ../../server:/src
     environment:
       - FLASK_APP=./main.py
+    env_file:
+      - ./postgres.env
     command: pipenv run flask run --host 0.0.0.0
 
   postgres:
