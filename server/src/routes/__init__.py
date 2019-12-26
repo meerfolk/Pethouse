@@ -1,6 +1,6 @@
 import requests
 from flask import Blueprint, request
-from src.config import get_config
+from src.config import get_config, get_url
 
 blueprint = Blueprint('routes', __name__)
 
@@ -11,7 +11,14 @@ def login():
 
 @blueprint.route('/config')
 def config():
-  return 'config'
+  github_data = get_config()['github_app']
+
+  return {
+    'github': {
+      'client_id': github_data['client_id'],
+      'redirect_uri': get_url(github_data['redirect_uri']),
+    },
+  }
 
 @blueprint.route('/oauth/redirect')
 def oauthRedirect():

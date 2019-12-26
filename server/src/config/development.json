@@ -7,6 +7,7 @@
 
   "github_app": {
     "client_id": "example_client_id",
-    "client_secret": "example_client_secret"
+    "client_secret": "example_client_secret",
+    "redirect_uri": "api/oauth/redirect"
   }
 }
