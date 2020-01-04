@@ -7,8 +7,8 @@ services:
     ports: 
       - 8000:80
     volumes:
-      - ./static:/etc/nginx/html/static
-      - ./config/ngnix.development.conf:/etc/nginx/nginx.conf
+      - ../../static:/etc/nginx/html/static
+      - ../../config/ngnix.development.conf:/etc/nginx/nginx.conf
     depends_on:
       - server
 
@@ -19,8 +19,6 @@ services:
       - ../../server:/src
     environment:
       - FLASK_APP=./main.py
-    env_file:
-      - ./postgres.env
     command: pipenv run flask run --host 0.0.0.0
 
   postgres:
