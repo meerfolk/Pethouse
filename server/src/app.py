@@ -1,6 +1,9 @@
 from flask import Flask
 from src import routes
 from src.config import init as init_config
+from src.migrations import apply as apply_migrations
+
+import os
 
 app = None
 
@@ -15,6 +18,7 @@ def get_app():
 
 def create_app():
   init_config()
+  apply_migrations()
 
   global app
   app = Flask(__name__)
