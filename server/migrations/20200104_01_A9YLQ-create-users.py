@@ -18,5 +18,5 @@ step(
       avatar_url VARCHAR(100) NOT NULL
     );
   """,
-  'DROP TABLE "users"',
+  'DROP TABLE "users";',
 )
