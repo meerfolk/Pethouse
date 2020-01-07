@@ -20,6 +20,7 @@ services:
     environment:
       - FLASK_APP=./main.py
       - FLASK_DEBUG=1
+      - POSTGRES_HOST=postgres
     env_file:
       - ./postgres.env
     command: pipenv run flask run --host 0.0.0.0
