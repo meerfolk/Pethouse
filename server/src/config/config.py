@@ -35,3 +35,8 @@ def init():
   mode = os.environ.get('MODE', 'development')
   _add_file_to_config(f'{mode}.json')
   _add_file_to_config('local.json')
+
+  config_data['postgres']['user'] = os.environ.get('POSTGRES_USER', config_data['postgres']['user'])
+  config_data['postgres']['password'] = os.environ.get('POSTGRES_PASSWORD', config_data['postgres']['password'])
+  config_data['postgres']['database'] = os.environ.get('POSTGRES_DB', config_data['postgres']['database'])
+  config_data['postgres']['host'] = os.environ.get('POSTGRES_HOST', config_data['postgres']['host'])
