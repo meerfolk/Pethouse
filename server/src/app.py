@@ -1,7 +1,8 @@
 from flask import Flask
 from src import routes
 from src.config import init as init_config
-from src.migrations import apply as apply_migrations
+from src.config import get_config
+from src.database.db import init as init_database
 
 import os
 
@@ -18,10 +19,12 @@ def get_app():
 
 def create_app():
   init_config()
-  apply_migrations()
 
   global app
   app = Flask(__name__)
+
+  with app.app_context():
+    init_database()
 
   register_blueprints(app)
 
