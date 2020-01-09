@@ -1,4 +1,4 @@
 .vscode
 */__pycache__
-./src/config/production.json
-./src/config/local.json
+src/config/production.json
+src/config/local.json
