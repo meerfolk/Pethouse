@@ -9,7 +9,7 @@ __depends__ = {'20191216_01_I4VxG-create-uuid-ossp'}
 step(
   """
     CREATE TABLE "users" (
-      user_id UUID PRIMARY KEY,
+      user_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
       created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
       updated_at TIMESTAMPTZ,
       github_login VARCHAR(50) NOT NULL UNIQUE,
