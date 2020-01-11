@@ -1,6 +1,9 @@
 import requests
 from flask import Blueprint, request, redirect
 from src.config import get_config, get_url
+from src.database.models import get_model
+from src.database import get_database
+from operator import itemgetter
 
 blueprint = Blueprint('routes', __name__)
 
@@ -37,12 +40,18 @@ def oauthRedirect():
 
   access_token = access_token_response.json()['access_token']
 
-  requests.get(
+  user_response = requests.get(
     'https://api.github.com/user',
     headers={
       'Authorization': f'Bearer {access_token}',
       'Accept': 'application/json',
     },
   )
+
+  email, github_login, name, avatar_url = itemgetter('email', 'github_login', 'name', 'avatar_url')(user_response.json())
+  user = get_model('User')(email=email, github_login=github_login, name=name, avatar_url=avatar_url)
+  db = get_database()
+  db.session.add(user)
+  db.session.commit()
 
   return redirect(get_url(''))
