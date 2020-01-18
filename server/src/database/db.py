@@ -1,5 +1,7 @@
 import os
 
+from .models import init_models
+
 db = None
 
 def get():
@@ -23,3 +25,5 @@ def init():
 
   global db
   db = SQLAlchemy(current_app) 
+
+  init_models()
