@@ -1,0 +1,1 @@
+from .get_user_from_session import decorator as get_user_from_session
