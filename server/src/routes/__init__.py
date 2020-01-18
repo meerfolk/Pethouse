@@ -1,15 +1,23 @@
 import requests
-from flask import Blueprint, request, redirect
+
+from operator import itemgetter
+from flask import Blueprint, request, redirect, g
+
 from src.config import get_config, get_url
 from src.database.models import get_model
 from src.database import get_database
-from operator import itemgetter
+
+from .middlewares import get_user_from_session
 
 blueprint = Blueprint('routes', __name__)
 
 @blueprint.route('/login')
+@get_user_from_session
 def login():
-  return 'login'
+  return {
+    'name': g.user.name,
+    'avatar_url': g.user.avatar_url,
+  }
 
 
 @blueprint.route('/config')
