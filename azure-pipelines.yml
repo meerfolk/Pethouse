@@ -4,16 +4,35 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - client
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
+- task: UseNode@1
+  displayName: 'Setup node.js'
+  inputs:
+    version: '12.13.0'
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    cd ./client
+    npm install
+    npm run buildDev
+  displayName: 'Build client bundle'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: './static'
+    Contents: 'bundle.js'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    OverWrite: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'bundle.js'
+    publishLocation: 'Container'
