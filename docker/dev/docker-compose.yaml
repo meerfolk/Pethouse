@@ -7,8 +7,8 @@ services:
     ports: 
       - 8000:80
     volumes:
-      - ../../static:/etc/nginx/html/static
-      - ../../config/ngnix.development.conf:/etc/nginx/nginx.conf
+      - ../../frontend/static:/etc/nginx/html/static
+      - ../../frontend/ngnix.development.conf:/etc/nginx/nginx.conf
     depends_on:
       - server
 

@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: './index.js',
   output: {
-    filename: '../../static/bundle.js',
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.js', '.vue'],
