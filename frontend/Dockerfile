@@ -5,5 +5,5 @@ RUN npm install && npm run buildDev
 
 FROM nginx:latest
 COPY ./static /etc/nginx/html/static
-COPY --from=0 /client/dist/bundle.js /static/bundle.js
+COPY --from=0 /client/dist/bundle.js /etc/nginx/html/static/bundle.js
 COPY ./ngnix.development.conf /etc/nginx/nginx.conf
